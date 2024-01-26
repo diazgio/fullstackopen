@@ -28,6 +28,10 @@ const App = () => {
     setSelected(newIndex);
   };
   
+  const maxVotes = Math.max(...votes);
+  const mostVotedAnecdotes = anecdotes.filter((_, index) => votes[index] === maxVotes);
+  const mostVotedAnecdote = mostVotedAnecdotes[0]; // Select the first most voted anecdote
+  
   return (
     <>
       <p>{anecdotes[selected]}</p>
@@ -36,6 +40,12 @@ const App = () => {
         <Vote handleVote={handleVote} />
         <Button handleClick={handleClick} />
       </div>
+      {maxVotes >= 1 && (
+        <>
+          <h2>Most Voted Anecdote</h2>
+          <p>{mostVotedAnecdote}</p>
+        </>
+      )}
     </>
   )
 }
