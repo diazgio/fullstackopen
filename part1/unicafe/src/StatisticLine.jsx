@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Display = ({ text, value }) => {
+const StatisticLine = ({ text, value }) => {
   return (
     <>
       <p>{text} {value}</p>
@@ -8,4 +8,4 @@ const Display = ({ text, value }) => {
   );
 };
 
-export default Display;
+export default StatisticLine;

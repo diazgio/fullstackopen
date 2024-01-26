@@ -1,5 +1,5 @@
 import React from 'react';
-import Display from './Display';
+import StatisticLine from './StatisticLine';
 
 const Statistics = (props) => {
   const { good, neutral, bad, all, average, positive } = props;
@@ -14,12 +14,12 @@ const Statistics = (props) => {
     return (
       <>
         <h2>Statistics</h2>
-        <Display text="Good" value={good} />
-        <Display text="Neutral" value={neutral} />
-        <Display text="Bad" value={bad} />
-        <Display text="All" value={all.length} />
-        <Display text="Average" value={average} />
-        <Display text="Positive" value={positive + ' %'} />
+        <StatisticLine text="Good" value={good} />
+        <StatisticLine text="Neutral" value={neutral} />
+        <StatisticLine text="Bad" value={bad} />
+        <StatisticLine text="All" value={all.length} />
+        <StatisticLine text="Average" value={average} />
+        <StatisticLine text="Positive" value={positive + ' %'} />
       </>
     );  
   }
