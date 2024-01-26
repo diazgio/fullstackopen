@@ -6,7 +6,7 @@ const Courses = (props) => {
   const {id, name} = props.courses;
   return (
     <>
-      <div key={id}>
+      <div>
         <Header name={name} />
         <Content parts={props.courses.parts} />
       </div>

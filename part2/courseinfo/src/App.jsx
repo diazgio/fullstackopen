@@ -24,7 +24,7 @@ const App = () => {
       {
         name: 'Redux',
         exercises: 11,
-        id: 3,
+        id: 4,
       },
     ],
   }

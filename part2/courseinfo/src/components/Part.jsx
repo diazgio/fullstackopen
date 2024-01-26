@@ -2,7 +2,6 @@ import React from 'react';
 import '../assets/styles/components/Part.css';
 
 const Part = ({ part }) => {
-  console.log(part);
   return (
     <>
       <div className='container-part'>
