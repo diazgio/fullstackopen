@@ -2,14 +2,16 @@ import React from 'react';
 import Header from './Header';
 import Content from './Content';
 
-const Courses = (props) => {
-  const {id, name} = props.courses;
+const Courses = ({ courses }) => {
+  const coursesArray = Array.from(courses);
   return (
     <>
-      <div>
-        <Header name={name} />
-        <Content parts={props.courses.parts} />
-      </div>
+      {coursesArray.map((course) => (
+        <div key={course.id}>
+          <Header name={course.name} />
+          <Content parts={course.parts} />
+        </div>
+      ))}
     </>
   );
 };
