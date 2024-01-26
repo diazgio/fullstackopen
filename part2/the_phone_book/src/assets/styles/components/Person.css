@@ -1,0 +1,7 @@
+.container-person {
+  display: flex;
+}
+
+.container-person p:first-child {
+  margin-right: 10px;
+}
