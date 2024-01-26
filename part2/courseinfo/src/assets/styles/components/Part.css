@@ -1,0 +1,7 @@
+.container-part {
+  display: flex;
+}
+
+.container-part p:first-child {
+  margin-right: 10px;
+}
