@@ -6,6 +6,7 @@ const App = () => {
     { name: 'Arto Hellas' }
   ]) 
   const [ newName, setNewName ] = useState('')
+  const [ errorMessage, setErrorMessage ] = useState(null);
 
   const handleNameChange = (event) => {
     setNewName(event.target.value);
@@ -13,9 +14,15 @@ const App = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const existingPerson = persons.find(person => person.name === newName);
+    if (existingPerson) {
+      setErrorMessage(`${newName} is already added to phonebook`);
+      return;
+    }
     const newPerson = { name: newName };
     setPersons([...persons, newPerson]);
     setNewName('');
+    alert(errorMessage);
   }
 
   return (
@@ -33,6 +40,7 @@ const App = () => {
       {persons.map((person) => (
         <Name key={person.name} name={person.name} />
       ))}
+      {errorMessage && alert(errorMessage)}
     </div>
   )
 }
