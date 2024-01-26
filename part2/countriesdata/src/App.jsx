@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Filter from './components/Filter';
-import Country from './components/Country';
+import CountryPage from './components/CountryPage';
+import CountryList from './components/CountryList';
 
 const App = () => {
   const [countries, setCountries] = useState([]);
@@ -31,12 +32,23 @@ const App = () => {
     <>
       <h1>Countries Data</h1>
       <Filter filteredCountry={filterName} handleFilterChange={handleFilterChange} />
-      {filteredCountries.length > 0 ? (
-        filteredCountries.map(country => (
-          <Country key={country.name.common} name={country.name.common} population={country.population} languages={country.languages} flag={country.flag} />
-        ))
-      ) : (
+      {filteredCountries.length === 0 ? (
         <p>Write and find your country</p>
+      ) : filteredCountries.length === 1 ? (
+        <CountryPage
+          key={filteredCountries[0].name.common}
+          name={filteredCountries[0].name.common}
+          population={filteredCountries[0].population}
+          languages={filteredCountries[0].languages}
+          flag={filteredCountries[0].flag}
+        />
+      ) : (
+        filteredCountries.map(country => (
+          <CountryList
+            key={country.name.common}
+            name={country.name.common}
+          />
+        ))
       )}
     </>
   )

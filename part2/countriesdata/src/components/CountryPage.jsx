@@ -1,7 +1,7 @@
 import React from 'react';
 import '../assets/styles/components/Country.css'
 
-const Country = ({ name, population, languages, flag }) => {
+const CountryPage = ({ name, population, languages, flag }) => {
   return (
     <div className='container-country-info'>
       {<h2><strong>{name}</strong></h2>}
@@ -19,4 +19,4 @@ const Country = ({ name, population, languages, flag }) => {
   );
 };
 
-export default Country;
+export default CountryPage;
