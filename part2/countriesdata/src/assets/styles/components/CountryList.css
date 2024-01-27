@@ -1,0 +1,13 @@
+.container-countries-list {
+  display: flex;
+  align-items: center;
+}
+
+.container-countries-list h2 {
+  margin-right: 10px;
+}
+
+.container-countries-list button {
+  margin: 0 0;
+  height: 30px;
+}

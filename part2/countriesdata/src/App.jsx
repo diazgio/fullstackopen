@@ -47,6 +47,9 @@ const App = () => {
           <CountryList
             key={country.name.common}
             name={country.name.common}
+            population={country.population}
+            languages={country.languages}
+            flag={country.flag}
           />
         ))
       )}
