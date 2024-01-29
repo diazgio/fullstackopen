@@ -7,6 +7,7 @@ import CountryList from './components/CountryList';
 const App = () => {
   const [countries, setCountries] = useState([]);
   const [filterName, setFilterName] = useState('');
+  
   useEffect(() => {
     axios.get('https://restcountries.com/v3.1/all')
       .then(response => {
@@ -17,7 +18,6 @@ const App = () => {
       });
   }, []);
 
-  console.log(countries);
 
   const handleFilterChange = (event) => {
     setFilterName(event.target.value.toLowerCase());
@@ -41,7 +41,10 @@ const App = () => {
           population={filteredCountries[0].population}
           languages={filteredCountries[0].languages}
           flag={filteredCountries[0].flag}
+          capital={filteredCountries[0].capital[0]}
         />
+      ) : filteredCountries.length > 10 ? (
+        <p>Too many matches, specify another filter</p>
       ) : (
         filteredCountries.map(country => (
           <CountryList
