@@ -42,8 +42,15 @@ const App = () => {
       return;
     }
     const newPerson = { name: newName, number: newNumber };
-    setPersons([...persons, newPerson]);
-    setNewName('');
+    axios.post('http://localhost:3001/persons', newPerson)
+      .then(response => {
+        setPersons([...persons, response.data]);
+        setNewName('');
+        setNewNumber('');
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   const filteredPersons = persons.filter(person => person.name.toLowerCase().includes(filterName));
