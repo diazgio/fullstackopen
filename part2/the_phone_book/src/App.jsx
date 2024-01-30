@@ -67,10 +67,16 @@ const App = () => {
         setNotification(`${newName} with number: ${newNumber} was added to phonebook`);
         setIsError(false);
         setTimeout(() => {
-          setNotification(null)
+          setNotification(null);
         }, 5000);
       })
       .catch(error => {
+        setIsError(true);
+        setNotification(`${error}`);
+        setTimeout(() => {
+          setNotification(null);
+          setIsError(false);
+        }, 5000);
         console.log(error);
       });
   }
@@ -87,6 +93,12 @@ const App = () => {
           setPersons(persons.filter(person => person.id !== id));
         })
         .catch(error => {
+          setIsError(true);
+          setNotification(`${newName} was already removed from server`);
+          setTimeout(() => {
+            setNotification(null);
+            setIsError(false);
+          }, 5000);
           console.log(error);
         });
     }
