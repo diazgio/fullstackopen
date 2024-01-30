@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import Notification from './components/Notification';
 import personService from './services/personService';
 import Person from './components/Person';
 import Filter from './components/Filter';
@@ -9,8 +9,9 @@ const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [notifiacion, setNotification] = useState(null);
   const [filterName, setFilterName] = useState('');
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     personService.getAll()
@@ -51,7 +52,7 @@ const App = () => {
             console.log(error);
           });
       }else{
-        setErrorMessage(`${newName} with number: ${newNumber} is already added to phonebook`);
+        setNotification(`${newName} with number: ${newNumber} is already added to phonebook`);
         setNewName('');
         setNewNumber('');
       }
@@ -63,6 +64,11 @@ const App = () => {
         setPersons([...persons, response.data]);
         setNewName('');
         setNewNumber('');
+        setNotification(`${newName} with number: ${newNumber} was added to phonebook`);
+        setIsError(false);
+        setTimeout(() => {
+          setNotification(null)
+        }, 5000);
       })
       .catch(error => {
         console.log(error);
@@ -91,6 +97,7 @@ const App = () => {
   return (
     <div>
       <h1>Phonebook</h1>
+      <Notification message={notifiacion} isError={isError} />
       <Filter filterName={filterName} handleFilterChange={handleFilterChange} />
       <h2>add new Person</h2>
       <Form newName={newName}
@@ -103,7 +110,6 @@ const App = () => {
       {filteredPersons.map((person) => (
         <Person key={person.id} name={person.name} number={person.number} handleDelete={handleDelete} id={person.id} />
       ))}
-      {errorMessage && alert(errorMessage)}
     </div>
   )
 }
